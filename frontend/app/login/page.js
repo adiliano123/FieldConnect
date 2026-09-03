@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -63,7 +64,7 @@ export default function LoginPage() {
 
         <div>
           <blockquote className="text-3xl font-bold leading-snug">
-            "The right opportunity can change the course of your career."
+            &ldquo;The right opportunity can change the course of your career.&ldquo;
           </blockquote>
           <p className="mt-4 text-sm" style={{ color: "#a7f3c0" }}>
             Thousands of students have found their field placement through FieldConnect.
