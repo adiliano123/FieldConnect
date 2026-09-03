@@ -89,10 +89,27 @@ export default function StudentNavbar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* Bell — mobile */}
+            {/* 🔔 Bell — desktop */}
+            <Link href="/student/notifications"
+              className="relative hidden md:flex h-9 w-9 items-center justify-center rounded-lg transition hover:opacity-80"
+              style={{ background: "rgba(255,255,255,0.12)" }}
+              aria-label="Notifications">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="white">
+                <path d="M10 2a6 6 0 0 0-6 6v3.586l-.707.707A1 1 0 0 0 4 14h12a1 1 0 0 0 .707-1.707L16 11.586V8a6 6 0 0 0-6-6zM10 18a3 3 0 0 1-3-3h6a3 3 0 0 1-3 3z"/>
+              </svg>
+              {unread > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold animate-pulse"
+                  style={{ background: "#ffc107", color: "#1a1a1a" }}>
+                  {unread > 9 ? "9+" : unread}
+                </span>
+              )}
+            </Link>
+
+            {/* 🔔 Bell — mobile */}
             <Link href="/student/notifications"
               className="relative flex h-9 w-9 items-center justify-center rounded-lg md:hidden"
-              style={{ background: "rgba(255,255,255,0.12)" }} aria-label="Notifications">
+              style={{ background: "rgba(255,255,255,0.12)" }}
+              aria-label="Notifications">
               <svg width="18" height="18" viewBox="0 0 20 20" fill="white">
                 <path d="M10 2a6 6 0 0 0-6 6v3.586l-.707.707A1 1 0 0 0 4 14h12a1 1 0 0 0 .707-1.707L16 11.586V8a6 6 0 0 0-6-6zM10 18a3 3 0 0 1-3-3h6a3 3 0 0 1-3 3z"/>
               </svg>
