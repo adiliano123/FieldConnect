@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -9,40 +8,32 @@ const API_URL = "http://localhost:5000/api";
 
 export default function LoginPage() {
   const router = useRouter();
-
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [formData, setFormData]         = useState({ email: "", password: "" });
+  const [loading, setLoading]           = useState(false);
+  const [error, setError]               = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((p) => ({ ...p, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
-
+    setError(""); setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const res  = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
-      const data = await response.json();
-
-      if (!response.ok) throw new Error(data.message || "Login failed");
-
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Login failed");
       localStorage.setItem("token", data.token);
       if (data.user) localStorage.setItem("user", JSON.stringify(data.user));
-
-      if (data.user?.role === "company") router.push("/company/dashboard");
+      if (data.user?.role === "company")    router.push("/company/dashboard");
       else if (data.user?.role === "admin") router.push("/admin/dashboard");
-      else router.push("/student/dashboard");
-
+      else                                  router.push("/student/dashboard");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -51,52 +42,53 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen" style={{ background: "var(--background)" }}>
+    /* eslint-disable @next/next/no-img-element */
+    <div className="flex min-h-[calc(100vh-128px)]">
 
-      {/* ── Left panel — branding ────────────────── */}
-      <div
-        className="hidden flex-col justify-between p-12 text-white lg:flex lg:w-2/5"
-        style={{ background: "linear-gradient(160deg, #1e7e34 0%, #28a745 60%, #48bb6e 100%)" }}
-      >
-        <Link href="/">
-          <img src="/logo.png" alt="FieldConnect" className="h-12 w-auto" />
-        </Link>
+      {/* ── Left branding panel ── */}
+      <div className="hidden lg:flex lg:w-5/12 flex-col justify-between p-12 text-white"
+        style={{ background: "linear-gradient(160deg, #0f172a 0%, #1e3a5f 55%, #155724 100%)" }}>
+
+        <div>
+          <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#ffc107" }}>
+            Welcome back
+          </p>
+        </div>
 
         <div>
           <blockquote className="text-3xl font-bold leading-snug">
-            &ldquo;The right opportunity can change the course of your career.&ldquo;
+            &ldquo;The right opportunity can change the course of your career.&rdquo;
           </blockquote>
-          <p className="mt-4 text-sm" style={{ color: "#a7f3c0" }}>
+          <p className="mt-4 text-sm leading-6" style={{ color: "rgba(255,255,255,0.6)" }}>
             Thousands of students have found their field placement through FieldConnect.
           </p>
 
-          {/* Feature dots */}
-          <ul className="mt-10 space-y-3">
+          <ul className="mt-8 space-y-3">
             {[
-              "Browse 500+ verified opportunities",
-              "Apply with a single cover letter",
-              "Real-time application tracking",
-            ].map((item) => (
-              <li key={item} className="flex items-center gap-3 text-sm">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/20 text-xs">✓</span>
-                {item}
+              { icon: "🔎", text: "Browse 500+ verified opportunities" },
+              { icon: "📝", text: "Apply with a single cover letter"   },
+              { icon: "📊", text: "Real-time application tracking"     },
+            ].map(({ icon, text }) => (
+              <li key={text} className="flex items-center gap-3 text-sm">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg"
+                  style={{ background: "rgba(255,193,7,0.15)" }}>{icon}</span>
+                <span style={{ color: "rgba(255,255,255,0.75)" }}>{text}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <p className="text-xs" style={{ color: "#a7f3c0" }}>© 2026 FieldConnect</p>
+        <p className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>© 2026 FieldConnect</p>
       </div>
 
-      {/* ── Right panel — form ───────────────────── */}
-      <div className="flex flex-1 items-center justify-center px-6 py-12">
+      {/* ── Right form panel ── */}
+      <div className="flex flex-1 items-center justify-center px-6 py-12"
+        style={{ background: "var(--background)" }}>
         <div className="w-full max-w-md animate-fade-in">
 
           {/* Mobile logo */}
-          <div className="mb-8 flex justify-center lg:hidden">
-            <Link href="/">
-              <img src="/logo.png" alt="FieldConnect" className="h-12 w-auto" />
-            </Link>
+          <div className="mb-6 flex justify-center lg:hidden">
+            <Link href="/"><img src="/logo.png" alt="FieldConnect" className="h-10 w-auto" /></Link>
           </div>
 
           <h1 className="text-3xl font-bold" style={{ color: "var(--text-primary)" }}>
@@ -105,67 +97,43 @@ export default function LoginPage() {
           <p className="mt-2 text-sm" style={{ color: "var(--text-secondary)" }}>
             Log in to continue to your account
           </p>
+          <Link href="/" className="mt-2 inline-flex items-center gap-1 text-sm hover:underline"
+            style={{ color: "var(--brand-600)" }}>
+            ← Back to Home
+          </Link>
 
-          {error && (
-            <div className="alert alert-error mt-6 animate-fade-in">
-              {error}
-            </div>
-          )}
+          {error && <div className="alert alert-error mt-5 animate-fade-in">{error}</div>}
 
-          <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-            {/* Email */}
+          <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+
             <div>
               <label className="field-label" htmlFor="email">Email Address</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="you@example.com"
-                required
-                autoComplete="email"
-                className="field-input"
-              />
+              <input id="email" type="email" name="email" value={formData.email}
+                onChange={handleChange} placeholder="you@example.com"
+                required autoComplete="email" className="field-input" />
             </div>
 
-            {/* Password */}
             <div>
               <label className="field-label" htmlFor="password">Password</label>
               <div className="relative">
-                <input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter your password"
-                  required
-                  autoComplete="current-password"
-                  className="field-input pr-12"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-sm"
-                  style={{ color: "var(--text-muted)" }}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
+                <input id="password" type={showPassword ? "text" : "password"} name="password"
+                  value={formData.password} onChange={handleChange}
+                  placeholder="Enter your password" required autoComplete="current-password"
+                  className="field-input pr-14" />
+                <button type="button" onClick={() => setShowPassword((v) => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-medium"
+                  style={{ color: "var(--text-muted)" }}>
                   {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn btn-primary btn-lg w-full mt-2"
-            >
+            <button type="submit" disabled={loading} className="btn btn-primary btn-lg w-full">
               {loading ? (
                 <span className="flex items-center gap-2">
                   <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4l3-3-3-3v4a8 8 0 1 0 8 8h-4l3 3 3-3h-4a8 8 0 0 1-8 8z" />
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v4l3-3-3-3v4a8 8 0 1 0 8 8h-4l3 3 3-3h-4a8 8 0 0 1-8 8z"/>
                   </svg>
                   Logging in…
                 </span>
@@ -179,6 +147,7 @@ export default function LoginPage() {
               Create one
             </Link>
           </p>
+
         </div>
       </div>
 

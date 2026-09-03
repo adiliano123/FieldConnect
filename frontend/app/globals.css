@@ -278,3 +278,17 @@ body {
 
 /* ─── Divider ────────────────────────────────────── */
 .divider { height: 1px; background: var(--border); margin-block: 1.5rem; }
+
+/* ─── Fixed footer ───────────────────────────── */
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* Add bottom padding to page body so content isn't hidden behind fixed footer */
+.has-fixed-footer {
+  padding-bottom: 56px;
+}

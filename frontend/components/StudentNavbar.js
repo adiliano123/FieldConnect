@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 const API_URL = "http://localhost:5000/api";
 
 const NAV_LINKS = [
+  { href: "/",                      label: "🏠 Home"       },
   { href: "/student/dashboard",     label: "Dashboard"     },
   { href: "/student/opportunities", label: "Opportunities" },
   { href: "/student/applications",  label: "Applications"  },
