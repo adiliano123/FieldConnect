@@ -88,7 +88,7 @@ export default function LoginPage() {
 
           {/* Mobile logo */}
           <div className="mb-6 flex justify-center lg:hidden">
-            <Link href="/"><img src="/logo.png" alt="FieldConnect" className="h-10 w-auto" /></Link>
+            <Link href="/"><img src="/icon.png" alt="FieldConnect" className="h-10 w-auto" /></Link>
           </div>
 
           <h1 className="text-3xl font-bold" style={{ color: "var(--text-primary)" }}>

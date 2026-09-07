@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
@@ -8,12 +9,7 @@ import { useEffect, useState } from "react";
 const API_URL = "http://localhost:5000/api";
 
 const NAV_LINKS = [
-  { href: "/admin/dashboard",       label: "Dashboard"     },
-  { href: "/admin/students",        label: "Students"      },
-  { href: "/admin/companies",       label: "Companies"     },
-  { href: "/admin/opportunities",   label: "Opportunities" },
-  { href: "/admin/applications",    label: "Applications"  },
-  { href: "/admin/payments",        label: "Payments"      },
+  { href: "/", label: "Home" },
 ];
 
 export default function AdminNavbar() {
@@ -66,7 +62,7 @@ export default function AdminNavbar() {
 
           {/* Logo + badge */}
           <Link href="/" className="flex items-center gap-2">
-            <img src="/logo.png" alt="FieldConnect" className="h-10 w-auto" />
+            <img src="/icon.png" alt="FieldConnect" className="h-10 w-auto" />
             <span className="rounded-full px-2.5 py-0.5 text-xs font-bold"
               style={{ background: "#ffc107", color: "#1a1a1a" }}>Admin</span>
           </Link>

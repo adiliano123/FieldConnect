@@ -290,5 +290,5 @@ body {
 
 /* Add bottom padding to page body so content isn't hidden behind fixed footer */
 .has-fixed-footer {
-  padding-bottom: 56px;
+  padding-bottom: 44px;
 }

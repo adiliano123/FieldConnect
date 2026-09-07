@@ -12,7 +12,7 @@ export default function AuthLayout({ children }) {
         }}>
         <div className="page-container flex h-16 items-center justify-between">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Link href="/"><img src="/logo.png" alt="FieldConnect" className="h-10 w-auto" /></Link>
+          <Link href="/"><img src="/icon.png" alt="FieldConnect" className="h-10 w-auto" /></Link>
           <nav className="hidden items-center gap-1 md:flex">
             <a href="/#how-it-works" className="rounded-lg px-3 py-1.5 text-sm font-medium hover:bg-white/10 transition-all"
               style={{ color: "rgba(255,255,255,0.75)" }}>How It Works</a>
@@ -35,10 +35,10 @@ export default function AuthLayout({ children }) {
 
       {/* ── Footer — always at bottom ── */}
       <footer className="shrink-0" style={{ background: "#0f172a", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-        <div className="page-container flex flex-col items-center justify-between gap-3 py-4 text-sm md:flex-row"
+        <div className="page-container flex flex-col items-center justify-between gap-3 py-2 text-sm md:flex-row"
           style={{ color: "rgba(255,255,255,0.45)" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <Link href="/"><img src="/logo.png" alt="FieldConnect" className="h-7 w-auto" /></Link>
+          <Link href="/"><img src="/icon.png" alt="FieldConnect" className="h-8 w-auto" /></Link>
           <p>© 2026 FieldConnect. All rights reserved.</p>
           <p style={{ color: "#ffc107" }}>Bridging Talent &amp; Opportunities</p>
         </div>

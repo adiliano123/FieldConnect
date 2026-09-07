@@ -94,7 +94,7 @@ export default function RegisterPage() {
 
           {/* Mobile logo */}
           <div className="mb-4 flex justify-center lg:hidden">
-            <Link href="/"><img src="/logo.png" alt="FieldConnect" className="h-9 w-auto" /></Link>
+            <Link href="/"><img src="/icon.png" alt="FieldConnect" className="h-9 w-auto" /></Link>
           </div>
 
           {/* Heading */}

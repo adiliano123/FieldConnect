@@ -8,11 +8,7 @@ import { useEffect, useState } from "react";
 const API_URL = "http://localhost:5000/api";
 
 const NAV_LINKS = [
-  { href: "/",                      label: "🏠 Home"       },
-  { href: "/company/dashboard",     label: "Dashboard"     },
-  { href: "/company/opportunities", label: "Opportunities" },
-  { href: "/company/applications",  label: "Applications"  },
-  { href: "/company/profile",       label: "Profile"       },
+  { href: "/", label: "Home" },
 ];
 
 export default function CompanyNavbar() {
@@ -67,7 +63,7 @@ export default function CompanyNavbar() {
         <div className="page-container flex h-16 items-center justify-between">
 
           <Link href="/" className="flex items-center">
-            <img src="/logo.png" alt="FieldConnect" className="h-10 w-auto" />
+            <img src="/icon.png" alt="FieldConnect" className="h-10 w-auto" />
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
